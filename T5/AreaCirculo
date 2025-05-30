@@ -1,0 +1,44 @@
+import math
+
+def calcular_area_circulo():
+    """
+    Lee el radio de un círculo, calcula su área y la imprime con dos decimales.
+    """
+    try:
+        # Leer el entero R, que denota el radio del círculo.
+        r_str = input()
+        r = int(r_str)
+
+        # Validar la restricción 0 < R (el problema también da un límite superior).
+        # Para OmegaUp, se suele suponer que la entrada cumple las restricciones.
+        # Si R fuera 0 o negativo, el concepto de área de un círculo físico cambia.
+        # La restricción del problema es 0 < R < sqrt(2) * 10^9.
+        if r <= 0:
+            # Esto no debería ocurrir si la entrada sigue las restricciones.
+            # En un caso real, se manejaría el error.
+            # print("El radio debe ser un número positivo.")
+            return # Salir si el radio no es positivo, según la restricción.
+
+        # Calcular el área del círculo: A = pi * R^2
+        # Usamos math.pi para una mejor precisión de pi.
+        # R**2 calcula R elevado al cuadrado.
+        area = math.pi * (r ** 2)
+
+        # Imprimir el área formateada a dos cifras decimales.
+        # El f-string {area:.2f} formatea el número de punto flotante 'area'
+        # para que tenga exactamente dos dígitos después del punto decimal,
+        # realizando el redondeo apropiado.
+        print(f"{area:.2f}")
+
+    except ValueError:
+        # Manejo de error si la entrada no es un entero.
+        # En OmegaUp, usualmente se asume que la entrada tendrá el formato correcto.
+        # print("Error: El radio debe ser un número entero.")
+        pass
+    except Exception as e:
+        # Otro tipo de error inesperado.
+        # print(f"Ocurrió un error inesperado: {e}")
+        pass
+
+if __name__ == "__main__":
+    calcular_area_circulo()

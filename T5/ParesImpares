@@ -1,0 +1,51 @@
+def ParesImpares():
+    """
+    Lee un arreglo de N enteros y un entero P.
+    Si P=0, imprime los números pares del arreglo.
+    Si P=1, imprime los números impares del arreglo.
+    El orden de aparición se respeta.
+    """
+    try:
+        # Leer N, el tamaño del arreglo
+        n = int(input())
+
+        # Leer los N enteros del arreglo
+        # Se asume que están en una sola línea separados por espacios.
+        # Y que N > 0 según las restricciones (1 <= N <= 20)
+        arreglo_str = input().split()
+        arreglo = []
+        for s_num in arreglo_str:
+            arreglo.append(int(s_num))
+            # Se podría validar que len(arreglo_str) == n y que los números estén entre 0 y 100
+            # pero en OmegaUp se suele asumir que la entrada es válida.
+
+        # Leer P
+        p = int(input())
+        # Se podría validar que p sea 0 o 1.
+
+        resultados = []
+
+        for numero in arreglo:
+            if p == 0:  # Se buscan números pares
+                if numero % 2 == 0:
+                    resultados.append(str(numero))
+            elif p == 1:  # Se buscan números impares
+                if numero % 2 != 0: # o numero % 2 == 1
+                    resultados.append(str(numero))
+        
+        # Imprimir la secuencia de resultados separados por espacios.
+        # Si la lista 'resultados' está vacía (ej. no hay números pares y P=0),
+        # " ".join([]) produce una cadena vacía, y print() imprimirá una línea en blanco.
+        # Esto es generalmente aceptable si el problema no especifica otra cosa para salidas vacías.
+        print(" ".join(resultados))
+
+    except ValueError:
+        # Error si la entrada no puede ser convertida a entero.
+        # Para OmegaUp, se asume que la entrada es correcta.
+        pass
+    except Exception as e:
+        # Cualquier otro error inesperado.
+        pass
+
+if __name__ == "__main__":
+    ParesImpares()

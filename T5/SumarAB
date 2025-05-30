@@ -1,0 +1,51 @@
+def sumar_dos_numeros():
+    """
+    Lee dos enteros a y b, separados por un espacio, y luego imprime su suma.
+    """
+    try:
+        # Lee la línea de entrada que contiene dos números separados por un espacio.
+        linea_entrada = input()
+
+        # Divide la cadena de entrada en una lista de cadenas usando el espacio como delimitador.
+        partes = linea_entrada.split()
+
+        # Convierte las dos primeras partes a enteros.
+        # Se asume que siempre habrá exactamente dos números según la descripción.
+        a = int(partes[0])
+        b = int(partes[1])
+
+        # Alternativamente, una forma más concisa de leer a y b:
+        # a, b = map(int, input().split())
+
+        # Validar las restricciones (1 <= a, b <= 1000).
+        # En OmegaUp, si el problema garantiza que la entrada cumple con los límites,
+        # esta validación explícita podría omitirse.
+        if not (1 <= a <= 1000 and 1 <= b <= 1000):
+            # Si la entrada está fuera de los límites, el comportamiento según OmegaUp
+            # puede ser procesarla igualmente o que los casos de prueba no violen esto.
+            # No se suelen imprimir mensajes de error personalizados.
+            pass # Asumimos que OmegaUp proveerá entradas dentro de los límites.
+
+        # Calcular la suma de a y b.
+        suma_total = a + b
+
+        # Imprimir el resultado.
+        print(suma_total)
+
+    except ValueError:
+        # Esto se activaría si la entrada no puede ser convertida a enteros
+        # o si no hay dos elementos después de split().
+        # En OmegaUp, usualmente se asume que la entrada es válida.
+        # print("Entrada inválida. Por favor ingrese dos números enteros separados por espacio.")
+        pass # No hacer nada o simplemente dejar que el programa falle si la entrada es incorrecta.
+    except IndexError:
+        # Esto se activaría si input().split() no produce al menos dos elementos.
+        # print("Entrada inválida. Se esperaban dos números.")
+        pass
+    except Exception as e:
+        # Captura de cualquier otra excepción inesperada.
+        # print(f"Ocurrió un error inesperado: {e}")
+        pass
+
+if __name__ == "__main__":
+    sumar_dos_numeros()

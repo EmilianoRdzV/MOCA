@@ -1,0 +1,44 @@
+def clasificarEdad():
+    """
+    Lee una edad L y la clasifica en una etapa de la vida.
+    """
+    try:
+        # Leer el entero L, que representa la edad.
+        l = int(input())
+
+        # Validar la restricción 0 <= L <= 99 (aunque el problema dice que se puede suponer)
+        # En un entorno como OmegaUp, si se garantiza la entrada, esta validación es opcional.
+        if not (0 <= l <= 99):
+            # Si la edad está fuera del rango esperado, se podría manejar el error.
+            # Sin embargo, para OmegaUp, usualmente se asume que la entrada es válida.
+            # Si se imprimiera un error aquí, podría contar como salida incorrecta.
+            # Por lo tanto, procederemos asumiendo que l está en el rango.
+            pass # No se hace nada si está fuera de rango, asumiendo que no ocurrirá.
+
+
+        # Determinar la etapa de la vida usando una estructura if-elif-else.
+        # El orden es importante para que las condiciones funcionen correctamente
+        # como una cascada.
+        if l <= 3:  # Bebé: 0 a 3 años, inclusive (ya que L >= 0 por restricción)
+            print("BEBE")
+        elif l <= 14: # Niño: 4 a 14 años, inclusive (implica L > 3)
+            print("NINO")
+        elif l <= 18: # Joven: 15 a 18 años, inclusive (implica L > 14)
+            print("JOVEN")
+        elif l <= 65: # Adulto: 19 a 65 años, inclusive (implica L > 18)
+            print("ADULTO")
+        else: # Adulto de la tercera edad: más de 65 años (implica L > 65 y L <= 99 por restricción)
+            print("ADULTO 3RA")
+
+    except ValueError:
+        # Manejo de error si la entrada no es un entero.
+        # En OmegaUp, usualmente se asume que la entrada tendrá el formato correcto.
+        # print("Error: La edad debe ser un número entero.")
+        pass
+    except Exception as e:
+        # Otro tipo de error inesperado.
+        # print(f"Ocurrió un error inesperado: {e}")
+        pass
+
+if __name__ == "__main__":
+    clasificarEdad()
