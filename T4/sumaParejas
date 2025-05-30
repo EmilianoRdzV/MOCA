@@ -1,0 +1,50 @@
+def sumar_parejas_de_numeros():
+    """
+    Lee un número N, luego N parejas de números, e imprime la suma de cada pareja.
+    """
+    try:
+        # Primero, leer el número N, que indica cuántas parejas de números se leerán.
+        n_str = input()
+        n = int(n_str)
+
+        # Validar que N sea un número razonable si es necesario (e.g., N > 0).
+        # Para OmegaUp, usualmente se asume que N cumple con las restricciones implícitas.
+        if n < 0: # Un N negativo no tendría sentido aquí.
+            # print("N debe ser un entero no negativo.") # En competencia, no imprimir errores no solicitados.
+            return
+
+    except ValueError:
+        # print("Entrada para N inválida. Se esperaba un número entero.")
+        return # Salir si N no es un entero.
+
+    # Leer N parejas de números.
+    for _ in range(n):
+        try:
+            # Leer la línea que contiene la pareja de números.
+            linea_pareja = input()
+            
+            # Dividir la línea por espacios y convertir cada parte a entero.
+            num1_str, num2_str = linea_pareja.split()
+            num1 = int(num1_str)
+            num2 = int(num2_str)
+            
+            # Calcular la suma.
+            suma = num1 + num2
+            
+            # Imprimir la suma.
+            print(suma)
+            
+        except ValueError:
+            # Esto se activaría si la línea no contiene dos números enteros válidos.
+            # print(f"Entrada de pareja inválida: '{linea_pareja}'. Se esperaban dos números enteros.")
+            # En un entorno competitivo, si una línea de entrada no es válida,
+            # el comportamiento esperado puede variar (fallar, ignorar, etc.).
+            # Usualmente, se asume que la entrada siempre es válida.
+            continue # Podríamos optar por continuar con la siguiente pareja si se permite.
+        except Exception as e:
+            # print(f"Ocurrió un error procesando una pareja: {e}")
+            continue
+
+
+if __name__ == "__main__":
+    sumar_parejas_de_numeros()
