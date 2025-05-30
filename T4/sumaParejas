@@ -1,4 +1,4 @@
-def sumar_parejas_de_numeros():
+def sumaParejas():
     """
     Lee un número N, luego N parejas de números, e imprime la suma de cada pareja.
     """
@@ -47,4 +47,4 @@ def sumar_parejas_de_numeros():
 
 
 if __name__ == "__main__":
-    sumar_parejas_de_numeros()
+    sumaParejas()
