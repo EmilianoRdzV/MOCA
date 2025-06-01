@@ -1,9 +1,6 @@
-# Definición de operadores, su precedencia y asociatividad ORIGINAL
 OPERATORS = {'+', '-', '*', '/', '^'}
 PRECEDENCE = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
-# Asociatividad ORIGINAL de los operadores:
-# '^' es Derecha a Izquierda (R)
-# '+', '-', '*', '/' son Izquierda a Derecha (L)
+
 ASSOCIATIVITY = {'^': 'R', '+': 'L', '-': 'L', '*': 'L', '/': 'L'}
 
 def infix_to_postfix_for_prefix_conversion(expression):
@@ -21,11 +18,6 @@ def infix_to_postfix_for_prefix_conversion(expression):
             if stack and stack[-1] == '(':
                 stack.pop()  # Sacar el '(' de la pila
         elif char in OPERATORS:  # Operador
-            # MODIFICACIÓN IMPORTANTE AQUÍ:
-            # Al procesar la expresión invertida, la regla de asociatividad para
-            # el pop de operadores de igual precedencia se invierte.
-            # Se saca de la pila si la precedencia del operador en la pila es mayor,
-            # O si es igual Y el operador actual (char) tiene asociatividad DERECHA (R) en el original.
             while (stack and stack[-1] in OPERATORS and
                    (PRECEDENCE[stack[-1]] > PRECEDENCE[char] or
                     (PRECEDENCE[stack[-1]] == PRECEDENCE[char] and ASSOCIATIVITY[char] == 'R'))): # <--- CAMBIO CLAVE: 'L' a 'R'
@@ -62,8 +54,6 @@ def infix_to_prefix(expression):
 
 if __name__ == "__main__":
     infix_expression = input()
-    # Es buena práctica manejar la posibilidad de una entrada vacía,
-    # aunque el problema usualmente garantiza una expresión.
     if infix_expression:
         prefix_result = infix_to_prefix(infix_expression)
         print(prefix_result)

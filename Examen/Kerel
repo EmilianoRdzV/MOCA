@@ -1,0 +1,11 @@
+iniciar-programa
+    inicia-ejecucion
+        deja-zumbador; (* Intenta usar el 1er zumbador *)
+
+        repetir 24 veces inicio
+            avanza;
+            deja-zumbador; (* Intenta usar del 2do al 25vo zumbador *)
+        fin;
+        apagate;
+    termina-ejecucion
+finalizar-programa

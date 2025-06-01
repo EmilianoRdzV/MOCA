@@ -1,0 +1,71 @@
+def bin_to_int_twos_complement(bin_str, num_bits):
+    """
+    Convierte una cadena binaria en formato complemento a dos a un entero decimal.
+    """
+    if not bin_str: # Manejar cadena vacía si num_bits es 0
+        return 0
+        
+    unsigned_val = int(bin_str, 2)
+    
+    if num_bits > 0 and bin_str[0] == '1': 
+        # Si el MSB es '1', es potencialmente negativo.
+        # Comprobamos si el valor sin signo alcanza el umbral para ser negativo.
+        if unsigned_val >= (1 << (num_bits - 1)):
+             signed_val = unsigned_val - (1 << num_bits)
+             return signed_val
+    return unsigned_val # Es positivo o cero
+
+def solve():
+    n_mantisa, n_exp = map(int, input().split())
+    full_binary_string = input()
+
+    mantisa_binary_str = ""
+    if n_mantisa > 0 :
+        mantisa_binary_str = full_binary_string[:n_mantisa]
+    
+    exponent_binary_str = ""
+    if n_exp > 0:
+        # Asegurarse de no exceder la longitud de full_binary_string si es corta
+        if len(full_binary_string) >= n_mantisa + n_exp:
+            exponent_binary_str = full_binary_string[n_mantisa : n_mantisa + n_exp]
+        elif len(full_binary_string) > n_mantisa: # Tomar lo que quede si n_exp es mayor que los bits restantes
+            exponent_binary_str = full_binary_string[n_mantisa:]
+        # Si len(full_binary_string) <= n_mantisa, exponent_binary_str permanece ""
+
+    mantisa_val = bin_to_int_twos_complement(mantisa_binary_str, n_mantisa)
+    exponent_val = bin_to_int_twos_complement(exponent_binary_str, n_exp)
+
+    if mantisa_val == 0:
+        print("0")
+        return
+    
+    sign = ""
+    if mantisa_val < 0:
+        sign = "-"
+    
+    str_abs_mantisa = str(abs(mantisa_val))
+
+    if exponent_val >= 0:
+        result_str = sign + str_abs_mantisa + '0' * exponent_val
+        print(result_str)
+    else:
+        abs_exponent = abs(exponent_val)
+        len_mantisa_digits = len(str_abs_mantisa)
+
+        if abs_exponent < len_mantisa_digits:
+            integer_part_len = len_mantisa_digits - abs_exponent
+            integer_part = str_abs_mantisa[:integer_part_len]
+            fractional_part = str_abs_mantisa[integer_part_len:]
+            
+            if not integer_part: # Ej. mantisa "123", exp -3 => ".123" -> "0.123"
+                integer_part = "0"
+            
+            result_str = sign + integer_part + "." + fractional_part
+            print(result_str)
+        else:
+            num_leading_zeros = abs_exponent - len_mantisa_digits
+            result_str = sign + "0." + '0' * num_leading_zeros + str_abs_mantisa
+            print(result_str)
+
+if __name__ == "__main__":
+    solve()
