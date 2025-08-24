@@ -1,0 +1,9 @@
+n = int(input())
+listaDigitos = input().split()
+
+listaInvertida = listaDigitos[::-1]
+
+if listaDigitos == listaInvertida:
+    print("SI")
+else:
+    print("NO")
