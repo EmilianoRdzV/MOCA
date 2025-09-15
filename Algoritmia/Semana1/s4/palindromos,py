@@ -1,0 +1,6 @@
+palabra = input().strip().lower()  
+
+if palabra == palabra[::-1]:
+    print("Si")
+else:
+    print("No")

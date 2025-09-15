@@ -1,0 +1,5 @@
+n = int(input())
+nums = list(map(int, input().split()))
+b = int(input())
+cont = nums.count(b)
+print(cont)

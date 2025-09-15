@@ -1,0 +1,5 @@
+examen = int(input())
+asistencia = int(input())
+tareas = int(input())
+total = (examen * 0.6) + (asistencia * 0.2) + (tareas * 0.2)
+print(int(total))
