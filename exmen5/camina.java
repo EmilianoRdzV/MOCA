@@ -1,0 +1,7 @@
+class program {
+    program () {
+        while(leftIsClear() || notNextToABeeper()){
+            move();
+        }
+    }
+}
