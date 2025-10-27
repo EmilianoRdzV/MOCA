@@ -11,7 +11,7 @@ fn main() {
         let valor: i32 = gasto.parse().unwrap();
         if valor == 0 {
             break;
-        }
+    }
         total += valor;
         cantidad += 1;
     }
