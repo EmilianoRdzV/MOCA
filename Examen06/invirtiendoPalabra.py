@@ -1,0 +1,1 @@
+print(",".join([p[::-1] for p in input().split(',')]))
