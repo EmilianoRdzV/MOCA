@@ -1,0 +1,13 @@
+# Leer las 6 dimensiones en dos líneas
+linea1 = list(map(int, input().split()))
+linea2 = list(map(int, input().split()))
+
+# Ordenar las dimensiones de cada prisma
+linea1.sort()
+linea2.sort()
+
+# Comparar las listas ordenadas
+if linea1 == linea2:
+    print(1)
+else:
+    print(0)
